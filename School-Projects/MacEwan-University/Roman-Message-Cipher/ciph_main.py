@@ -122,6 +122,7 @@ def decipher(table, key, cipher):
 
 table = build_table()
 
+# Main Program Loop
 loop = True
 while loop:
 
