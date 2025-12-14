@@ -12,7 +12,12 @@
 
 **IDEs Used**
 
-# Wing | Visual Studio | CodeBlocks | Codespaces | Jupyter Notebook 
+# Wing | Visual Studio 2022-Current | CodeBlocks 
+# Codespaces | Jupyter Notebook | Visual Studio Code
+
+**Tools & Platforms Used**
+# Blender | Cakewalk Bandlabs | kdenlive 
+# Unreal Engine (2.5-5)| Unity Engine (5-6) | Source Engine |
 
 **Projects I've Worked On**
 # --------------------------
