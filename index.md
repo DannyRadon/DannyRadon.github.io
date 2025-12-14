@@ -1,20 +1,21 @@
 # ---------------------------------------------------------------------------
 
 # Well, Hello There! I'm Danny
-# "Journeyman" Programmer, Founder of 'Attic Games', and Student of Machine Learning
+# "Journeyman" Programmer | Founder of 'Attic Games'| Student of Machine Learning
 
 # ---------------------------------------------------------------------------
 
 ## Languages Known
 
-# C# | C++ | OpenGL | Windows API | Linux (Debian) | Python | SQL | Apache Server Language | VSCode
+# C# | C++ | OpenGL | Windows API | Linux (Debian) 
+# Python | SQL | Apache Server Language | VSCode
 
 ## IDEs Used
 
 # Wing | Visual Studio | CodeBlocks | Codespaces | Jupyter Notebook 
 
 ## Projects I've Worked On
-# -------------------------
+#
 #       Academia
 # -------------------------
 # - "Worst Restaurant Finder": Co-Developed with Augusto Menegasse (2022)
@@ -50,4 +51,6 @@
 # ---------------------------------------------------------
 ## So, What's Cookin' Next???
 # --------------------------------------------------------
+
+['assets/A58/Area-58-Cover.png']
 
