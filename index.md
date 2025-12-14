@@ -17,7 +17,7 @@
 
 **Tools & Platforms Used**
 # Blender | Cakewalk Bandlabs | kdenlive 
-# Unreal Engine (2.5-5)| Unity Engine (5-6) | Source Engine |
+# Unreal Engine (2.5-5) | Unity Engine (5-6) | Source Engine
 
 **Projects I've Worked On**
 # --------------------------
