@@ -5,7 +5,7 @@
 
 # ---------------------------------------------------------------------------
 
-### Languages Known
+**Languages Known**
 
 # C# | C++ | OpenGL | Windows API | Linux (Debian) 
 # Python | SQL | Apache Server Language | VSCode
@@ -14,8 +14,8 @@
 
 # Wing | Visual Studio | CodeBlocks | Codespaces | Jupyter Notebook 
 
-### Projects I've Worked On
-#
+**Projects I've Worked On**
+#--------------------------
 #       Academia
 # -------------------------
 # - "Worst Restaurant Finder": Co-Developed with Augusto Menegasse (2022)
