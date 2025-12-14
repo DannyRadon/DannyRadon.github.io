@@ -10,7 +10,7 @@
 #-------------------------------------------------------------------------------
 
 # Variable containing file name created for use by main function
-filename = "../data/carData.csv"
+filename = "data/carData.csv"
 
 # Load Data Function
 def loadData(filename):
