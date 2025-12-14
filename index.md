@@ -5,16 +5,16 @@
 
 # ---------------------------------------------------------------------------
 
-## Languages Known
+### Languages Known
 
 # C# | C++ | OpenGL | Windows API | Linux (Debian) 
 # Python | SQL | Apache Server Language | VSCode
 
-## IDEs Used
+### IDEs Used
 
 # Wing | Visual Studio | CodeBlocks | Codespaces | Jupyter Notebook 
 
-## Projects I've Worked On
+### Projects I've Worked On
 #
 #       Academia
 # -------------------------
