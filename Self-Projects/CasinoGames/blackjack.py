@@ -1,4 +1,5 @@
 # Black Jack Game -------------------------------------------------------------
+import random
 
 def play_blackjack(player_data):
     
@@ -327,3 +328,10 @@ def play_blackjack(player_data):
         
         elif game_sel == 4:
             break
+
+
+player_data = {'Financials': {
+    'Balance': 1000
+}}
+
+play_blackjack(player_data)

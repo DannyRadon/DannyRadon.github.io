@@ -1,4 +1,5 @@
 # Slot Machines Game Code Here ------------------------------------------------
+import random
 
 def play_slots(player_data):
     
@@ -165,3 +166,9 @@ def play_slots(player_data):
             break
 
 # -----------------------------------------------------------------------------
+
+player_data = {'Financials': {
+    'Balance': 1000
+}}
+
+play_slots(player_data)

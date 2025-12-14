@@ -688,7 +688,7 @@ admin_pass = ['Doom', 'MassEffect', 'ResidentEvil', 'Quake', 'DukeNukem',
 
 # System User Object Created for Manual Testing & Debugging Purposes
 
-user_basic = SystemUser('Danny', 'zz', isLogon=True, isAdmin=False)         # System User Object Created for Testing (Basic Account with NO Administrator Priveledges)
+user_basic = SystemUser('Danny', 'bb', isLogon=True, isAdmin=False)         # System User Object Created for Testing (Basic Account with NO Administrator Priveledges)
 
 """ Although the testing SystemUser object is created and labelled here as a
 basic user, if you input an Administrator Password then you can still logon as
