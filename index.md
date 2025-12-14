@@ -52,5 +52,4 @@
 ## So, What's Cookin' Next???
 # --------------------------------------------------------
 
-['assets/A58/Area-58-Cover.png']
-
+![Area 58 Cover](assets/A58/Area-58-Cover.png)
