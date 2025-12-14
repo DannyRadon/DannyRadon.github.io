@@ -113,7 +113,7 @@
 - Writer
 
 # -------------------------------------------------------------
-## My Origin Story (About Me)
+# My Origin Story (About Me)
 # -------------------------------------------------------------
 
 #   My journey into becoming a developer started in 2018 when I had realized that upon flunking calculus-based physics, the venture into becoming an Astrophysicist like Carl Sagan or an Astronaut like Charlie Duke would remain exactly where it started as... A Dream. With a heavy heart and without any direction, the rest of the semesters proceeded in much the same way. That is, until I found the introduction course to programming. Intimidated at first, I quickly realized... Hey!, I can do something! And I can do it pretty alright!. Comp-Sci course after Comp-Sci course, ingratiating myself in the works of Information & Cyber Security, Operating Systems, and Game Engines throughout history, a natural fit was quickly established. Not only did I find a new love but also a new home. 
