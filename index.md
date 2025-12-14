@@ -40,12 +40,29 @@
 # - Contributed to Open Source Project "NASSP Apollo Project" for Orbiter 2016 Originally Developed by MIT (Fuel Cell System Purge Logic - 2021)
 # - Created a Terminal-Based Version of "Battleship" in C++ (2024)
 # - Created a Side-Scroller Adventure Game (Python) titled "Dave & Dan's Dangerous Dig" (Lead Programmer - 2024)
-# - Began Official Development on FPS title "Area-58" & Psyc/Suspence Title "Station 3" (2025)
 
 
 # -----------------------------------------------
 ## Here are some glimpses of that work!
 # ------------------------------------------------
+
+**Dave & Dan's Dangerous Dig**
+<div style="display:flex; gap:16px; justify-content:center;">
+  <img src="assets/dig/dd_splash.png" width="45%" alt="Gameplay Screenshot 1">
+  <img src="assets/dig/dd_gameplay.png" width="45%" alt="Gameplay Screenshot 2">
+</div>
+
+**C++ Battleship (Terminal)**
+<div style="display:flex; gap:16px; justify-content:center;">
+  <img src="assets/bship/bship_terminal.png" width="45%" alt="Gameplay Screenshot 1">
+  <img src="assets/bship/bship_terminal2.png" width="45%" alt="Gameplay Screenshot 2">
+</div>
+
+**Space RPG Terminal Game (Python)**
+<div style="display:flex; gap:16px; justify-content:center;">
+  <img src="assets/sg/sg_shot1.png" width="45%" alt="Gameplay Screenshot 1">
+  <img src="assets/sg/sg_shot2.png" width="45%" alt="Gameplay Screenshot 2">
+</div>
 
 
 # ---------------------------------------------------------
@@ -82,3 +99,4 @@
 ![Station 3 Cover](assets/S3/station3_wallpaper_cover.png)
 
 **Synopsis:**
+*5 days. 
