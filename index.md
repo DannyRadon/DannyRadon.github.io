@@ -52,7 +52,8 @@
 ## So, What's Cookin' Next???
 # --------------------------------------------------------
 
-## Area 58 | Science-Fiction Action | First Person Shooter | Unreal Engine 4
+### Area 58 
+**Science-Fiction Action | First Person Shooter | Unreal Engine 4**
 
 ![Area 58 Cover](assets/A58/Area-58-Cover.png)
 
