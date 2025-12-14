@@ -52,8 +52,17 @@
 ## So, What's Cookin' Next???
 # --------------------------------------------------------
 
-### Area 58 
+### Area-58 
 **Science-Fiction Action | First Person Shooter | Unreal Engine 4**
 
 ![Area 58 Cover](assets/A58/Area-58-Cover.png)
 
+**Synopsis:**
+*Set in 1996, deep within the Nevada desert, hides a top-secret government facility. Area 58, a sister-site to the infamous Area-51, sends a recovery team nearby to investigate a meteorite impact. When a sample is returned and investigated, the base quickly discover that the collected specimen is holding something darker than just clues to our universe...
+
+*Run, Think, Shoot, Survive through 3 episodes of knuckle-biting, hair-raising action sprawling over 30 levels. Battle with ever-evolving enemies using an arsenal of weaponry. Get immersed in unique sound design and original music while uncovering the secrets of Area-58. Shoot first, ask questions later, and maybe you'll survive...
+
+### Station 3
+**Psychological Suspense Space-Sim | First Person Survival | Unity Engine 6**
+
+![Station 3 Cover](assets/S3/station3_wallpaper_cover.png)
