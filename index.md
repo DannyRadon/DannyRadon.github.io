@@ -15,14 +15,13 @@
 # Wing | Visual Studio | CodeBlocks | Codespaces | Jupyter Notebook 
 
 **Projects I've Worked On**
-#--------------------------
+# --------------------------
 #       Academia
 # -------------------------
 # - "Worst Restaurant Finder": Co-Developed with Augusto Menegasse (2022)
 # - "LMS: Library Management System (Terminal Based)": 1-Week Project for Software Deployment Course (2025)
 # - Work Integrated Project with Go Auto in Machine Learning (2025)
 # - Constructed an End-to-End Pipline for Machine Learning Model Deployment (2025)
-#
 # -------------------------
 #       Contractor
 # -------------------------
@@ -31,7 +30,6 @@
 # - Contributed to "Ghost Code" for Resolving Aggressive NPC-Behavior in FPS Title "Ready or Not" (Alpha Version - 2022)
 # - Created a "Pseudo-LAN" Script Allowing Machines to "Chat" with Each Other on the same Network (2022)
 # - Built Web-Scrapers (Weather, Locations) for Individuals within Scientific Professions for their Research (2021)
-#
 # -------------------------
 #      Personal/Self
 # -------------------------
