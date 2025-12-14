@@ -62,6 +62,12 @@
 
 *Run, Think, Shoot, Survive through 3 episodes of knuckle-biting, hair-raising action sprawling over 30 levels. Battle with ever-evolving enemies using an arsenal of weaponry. Get immersed in unique sound design and original music while uncovering the secrets of Area-58. Shoot first, think later, and maybe you'll survive...*
 
+**Preview Images:**
+<div style="display:flex; gap:16px; justify-content:center;">
+  <img src="assets/A58/Area-58-Menu.png" width="45%" alt="Gameplay Screenshot 1">
+  <img src="assets/A58/Area-58-Gameplay.png" width="45%" alt="Gameplay Screenshot 2">
+</div>
+
 **Dev Roles:**
 - Lead Programmer
 - Asset Modeler
@@ -74,3 +80,5 @@
 **Psychological Suspense Space-Sim | First Person Survival | Unity Engine 6**
 
 ![Station 3 Cover](assets/S3/station3_wallpaper_cover.png)
+
+**Synopsis:**
