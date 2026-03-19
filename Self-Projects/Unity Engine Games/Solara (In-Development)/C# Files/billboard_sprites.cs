@@ -1,5 +1,15 @@
+// ------------------------------------------------------------------------------------
+// Name: billboard_sprites
+// Date: 
+// 
+// Description:
+//
+// -------------------------------------------------------------------------------------
+
+// Referencing the Unity Engine
 using UnityEngine;
 
+// Creating a UnityEngine Class - MonoBehavior (Single Script Action)
 public class BillboardSprites : MonoBehaviour
 {
     
