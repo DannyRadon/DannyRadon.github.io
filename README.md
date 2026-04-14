@@ -14,7 +14,11 @@
 |
 `-- NorQuest College (Lab Work and Homework Done)
     |
-    `-- Library Management System (LMS) - OOP Development Assignment for Conceptualizing a Library Management System
+    `-- Assignments:
+            Library Management System (LMS) - OOP Development Assignment for Conceptualizing a Library Management System
+    |
+    `-- Work-Integrated-Learning:
+            Data Analytics Workstation
 
 -- Self Projects - Some stuff I've done on my own and on my own time
 |
