@@ -9,6 +9,7 @@
 
 # C# | C++ | OpenGL | Windows API | Linux (Debian) 
 # Python | SQL | Apache Server Language | VSCode
+# HTML | DirectX API
 
 **IDEs Used**
 
@@ -27,6 +28,7 @@
 # - "LMS: Library Management System (Terminal Based)": 1-Week Project for Software Deployment Course (2025)
 # - Work Integrated Project with Go Auto in Machine Learning (2025)
 # - Constructed an End-to-End Pipeline for Machine Learning Model Deployment (2025)
+# - Developed an Analytical Workstation Platform Prototype for Data Visualization (2026)
 # -------------------------
 #       Contractor
 # -------------------------
