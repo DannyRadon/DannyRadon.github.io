@@ -1,0 +1,890 @@
+import streamlit as st
+
+# This CSS creates the Gradient MAIN Background 
+st.markdown("""
+<style>
+.stApp {
+    /* Linear gradient example: top-left blue to bottom-right purple */
+    background: linear-gradient(135deg, #2257d6 25%, #3b77bc 50%, #009cde 66%, #d0d0d0 100%);
+}
+</style>
+""", unsafe_allow_html=True)
+
+# THIS MARKDOWN FILE HANDLES THE TOP BAR & SIDE-BAR GUI APPEARANCES
+st.markdown("""
+<style>
+.icon-card {
+    background: linear-gradient(
+        135deg,
+        #cbcbcb 0%,
+        #ec722e 25%,
+        #DE482B 100%
+    );
+    border-radius: 12px;
+    width: 150px !important;
+    height: 150px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  /* icon on top, label at bottom */
+    padding: 2px 0;
+    border: 2px solid #333;
+    margin: 0 auto;
+    box-shadow: 0px 4px 12px 2px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
+}
+            
+
+.icon-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.6);
+}
+
+.icon-card img {
+    max-width: 150px;    /* Almost fills the width */
+    max-height: 115px;   /* Almost fills the height */
+    
+    
+    
+}
+
+.card-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+/* Transparent overlay button for click */
+.stButton > button {
+    position: absolute;
+    width: 150px !important;   /* Matches your .icon-card width */
+    height: 150px !important;  /* Matches your .icon-card height */
+    background: transparent !important;
+    border: none !important;
+    color: transparent !important;
+    margin-top: -205px;        /* This "lifts" the button up to sit ON TOP of the card */
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* Optional: remove the default streamlit button hover effect so it doesn't flicker */
+.stButton > button:hover {
+    background: transparent !important;
+    border: none !important;
+    color: transparent !important;
+}
+
+/* Tabs background when active */
+[role="tablist"] button[aria-selected="true"] {
+    background: linear-gradient(135deg, #38c401, #81C046, 0.7); !important; /* highlight color */
+    color: white !important;              /* text color */
+    border-radius: 8px;                   /* optional rounded corners */
+}
+
+/* Optional: hover effect for all tabs */
+[role="tablist"] button:hover {
+    background-color: rgba(56,196,1,0.3) !important;
+    color: white !important;
+    border-radius: 8px;
+}
+
+/* Top bar background */
+header[data-testid="stHeader"] {
+    background: linear-gradient(135deg, #0054e3, #3b77bc, #009cde) !important; /* gradient */
+    height: 50px;           /* adjust height if needed */
+}
+
+
+/* ===== TASK BAR MAIN CONTAINER ===== */
+.menu-bar {
+    background: linear-gradient(180deg, #7BA2E7, #357EC7, #3169C6, #7BA2E7);
+    padding: 6px 12px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    border: 4px solid #cecece;
+    border-radius: 5px;
+    box-shadow: 0px 6px 50px 5px rgba(0,0,0,0.4);
+    font-family: Arial, sans-serif;
+}
+
+
+/* ===== MENU ITEMS ===== */
+.menu-item {
+    position: relative;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* Hover effect like Windows */
+.menu-item:hover {
+    background-color: #cecece;
+    color: black;
+}
+
+/* ===== TASK BAR DROP DOWN MENUS CONTAINER ===== */
+.menu-bar {
+    background: linear-gradient(180deg, #7BA2E7, #357EC7, #3169C6, #7BA2E7);
+    padding: 6px 12px;
+    display: flex;       /* This makes items stay side-by-side */
+    flex-direction: row; /* Explicitly force horizontal layout */
+    width: 100%;  /* Prevents the bar from collapsing */
+    gap: 25px;
+    align-items: center;
+    border: 4px solid #cecece;
+    border-radius: 5px;
+    box-shadow: 0px 6px 50px 5px rgba(0,0,0,0.4);
+    font-family: Arial, sans-serif;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; /* Sticks it to the bottom of the menu-item */
+    left: 0;
+    background-color: #f0f0f0;
+    min-width: 160px;
+    z-index: 9999; /* Ensures it stays on top of other dashboard charts */
+    border: 3px solid #3170de;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+/* ===== DROPDOWN ITEMS ===== */
+.dropdown div {
+    padding: 6px 10px;
+    cursor: pointer;
+    color: black;
+}
+
+/* Hover effect inside dropdown */
+.dropdown > div:hover {
+    background-color: #0078d7;
+    color: white;
+}
+
+.menu-leaf > button {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.menu-leaf:hover {
+    background-color: #0078d7;
+    color: white;
+}
+
+/* SHOW dropdown when hovering parent */
+.menu-item:hover .dropdown {
+    display: block;
+}
+
+
+/* ===== SUBMENU (nested dropdown) ===== */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%; /* pushes it to the right */
+    background-color: #f0f0f0;
+    min-width: 140px;
+    border: 2px solid #3170de;
+    border-radius: 8px;
+    padding: 0;
+    z-index: 1001;
+}
+
+/* --- Highlighting Options in Nested Sub-Menu  */
+.submenu > .dropdown-item:hover {
+    background-color: #0078d7;
+    color: white;
+}
+
+/* Parent item needs positioning */
+.dropdown-item {
+    position: relative;
+}
+
+
+/* Only show submenu when hovering DIRECT parent */
+.dropdown-item:hover > .submenu {
+    display: block;
+}
+
+/* Push clock to the right side of the taskbar */
+.taskbar-clock {
+    margin-left: auto; 
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    min-width: 100px;
+    text-align: center;
+}
+
+/* ------------------ Sidebar gradient ------------------ */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #2257d6, #009cde, #009cde, #dcdcdc);
+    color: white;
+    border: 4px solid #d7d7d7
+}
+
+/* Hover State */
+[data-testid="stSidebarNav"] li a:hover {
+    background-color: rgba(229, 80, 0, 0.5) !important;
+    color: #0068c9 !important;
+}
+
+/* Active/Selected Page State */
+[data-testid="stSidebarNav"] li a[aria-current="page"] {
+    background-color: rgba(56, 196, 1, 0.7) !important;
+    color: white !important;
+    font-weight: bold;
+}
+            
+/* Sidebar headers */
+[data-testid="stSidebar"] h2, 
+[data-testid="stSidebar"] h3 {
+    color: #ffffff;
+}
+
+/* Target the text within the sidebar navigation */
+[data-testid="stSidebarNav"] li a span {
+    text-transform: uppercase; /* Options: uppercase, capitalize, lowercase */
+    font-family: 'Arial', sans-serif; /* Your preferred font */
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Sidebar buttons */
+[data-testid="stSidebar"] button {
+    background-color: #38c401;
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    border: 2px solid #ffffff
+}
+
+/* Optional: page title style */
+.page-title {
+    font-size: 42px;
+    font-weight: bold;
+    color: #d7d7d7;
+    -webkit-text-stroke: 1px #000000;  /* subtle outline */
+    text-align: center;
+    margin-bottom: 5px;
+
+
+}
+
+/* 1. Hide the entire radio widget container */
+div[data-testid="stRadio"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+/* 2. Hide the label specifically just in case */
+div[data-testid="stWidgetLabel"] {
+    display: none !important;
+}
+
+/* Remove hyperlink look */
+.dropdown a {
+    text-decoration: none !important;
+    color: black !important;
+    display: block;
+    padding: 6px 10px;
+}
+
+/* Hover effect like real menus */
+.dropdown a:hover {
+    background-color: #0078d7 !important;
+    color: white !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.title("Machine Learning & Forecasting")
+
+import streamlit.components.v1 as components
+import matplotlib.pyplot as plt
+from helpers.data_load import load_data
+from helpers.data_funcs import *
+
+import base64
+
+# Imported ML pieces
+from src.aeso_cleaning_fe1 import *
+from src.modeling_2 import *
+
+
+# Loading in the Icons
+icon_sys_info = get_base64_image("static/icon_sysinfo.png")
+icon_impacts_info = get_base64_image("static/icon_impacts.png")
+icon_analytics_info = get_base64_image("static/icon_analytics.png")
+icon_home = get_base64_image("static/icon_home.png")
+icon_chat = get_base64_image("static/icon_chat.png")
+
+
+with open("static/calculator.html", "r", encoding="utf-8") as f:
+    calc_html = f.read()
+    
+b64_calc = base64.b64encode(calc_html.encode()).decode()
+
+
+with open("static/writepad.html", "r", encoding="utf-8") as wp:
+    pad_html = wp.read()
+
+b64_pad = base64.b64encode(pad_html.encode()).decode()
+
+
+
+# This CSS Handles the Green Background for the Icon Sections - This is setup to be handled by the HTML stuff down below
+st.markdown("""
+<style>
+.green-section {
+    background: linear-gradient(
+        180deg,
+        #A4C76E 0%,
+        #7FAE42 50%,
+        #38c401 100%
+    );
+    padding: 30px 10px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 5px solid #cecece;
+    box-shadow: 0px 6px 50px 5px rgba(0,0,0,0.4);
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+
+
+# Render all cards in one row (green section) -- This is the HTML stuff I was talking about above 
+st.markdown(f'''
+<div class="green-section">
+    <div class="icon-card">
+        <img src="data:image/png;base64,{icon_home}">
+        <div class="card-text">Home</div>
+    </div>
+    <div class="icon-card">
+        <img src="data:image/png;base64,{icon_sys_info}">
+        <div class="card-text">System Info</div>
+    </div>
+    <div class="icon-card">
+        <img src="data:image/png;base64,{icon_impacts_info}">
+        <div class="card-text">Impacts</div>
+    </div>
+    <div class="icon-card">
+        <img src="data:image/png;base64,{icon_analytics_info}">
+        <div class="card-text">Analytics</div>
+    </div>
+    <div class="icon-card">
+        <img src="data:image/png;base64,{icon_chat}">
+        <div class="card-text">Chat</div>
+    </div>
+</div>
+''', unsafe_allow_html=True)
+
+
+# Clickable-Icon Navigation Area -- Routing to Other Pages -- this is what allows interactivity 
+
+col1, col2, col3, col4, col5 = st.columns(5)
+with col1:
+    if st.button(" ", key="home_btn"):
+        st.switch_page("home.py")
+
+with col2:
+    if st.button(" ", key="sys_info_btn"):
+        st.switch_page("pages/system_info.py")
+
+with col3:
+    if st.button(" ", key="imp_info_btn"):
+        st.switch_page("pages/impacts.py")
+
+with col4:
+    if st.button(" ", key="ml_info_btn"):
+        st.switch_page("pages/analytics.py")
+
+with col5:
+    if st.button(" ", key="chat_btn"):
+        st.switch_page("pages/chat.py")
+
+
+
+# Import Pool
+import urllib.parse
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+import plotly.tools as tls
+import matplotlib.pyplot as plt
+
+from st_click_detector import click_detector
+
+
+# ------------------------------- THIS SECTION IS TO SETUP & OPERATE THE GUI MENU LOGIC ----------------------------------- |
+
+
+params = st.query_params
+
+# --- SYNC URL TO SESSION STATE --- |
+for url_key, state_key in [
+    ("graph", "graph_type"), 
+    ("x", "x"), 
+    ("y_test", "y_test"),
+    ("view_type", "view_type"),
+    ("calc_btn", "calc_btn"),
+    ("dataflow", "dataflow")
+]:
+    if url_key in st.query_params:
+        st.session_state[state_key] = st.query_params[url_key]
+
+
+
+
+# --- SETTING DEFAULTS --- If the app is opened for the first time (no URL params)
+        
+        
+if "graph_type" not in st.session_state:
+    st.session_state.graph_type = "Line"
+        
+if "x" not in st.session_state:
+    st.session_state.x = "DateTime"
+        
+if "y_test" not in st.session_state:
+    st.session_state.y_test = "gen_cap"
+        
+if "view_type" not in st.session_state:
+    st.session_state.view_type = "prediction"
+        
+if "dataflow" not in st.session_state:
+    st.session_state.dataflow = "None"
+
+if "calc_btn" not in st.session_state:
+    st.session_state.calc_btn = False
+
+# ----------------------------------------- Initializing & Building HTML URLs --- Used for GUI Click Detection Logic -----------------------|
+
+
+# Import & Export URLs
+url_export = build_url_ml(dataflow="Export")
+
+# Graph Visualization URLs
+url_bar = build_url_ml(graph="Bar")
+url_line = build_url_ml(graph="Line")
+url_box = build_url_ml(graph="Box")
+url_scatter = build_url_ml(graph="Scatter")
+
+# View Mode URLs
+url_pred = build_url_ml(view_type="prediction")
+url_xai = build_url_ml(view_type="insights")
+url_fore = build_url_ml(view_type="forecast")
+
+
+# Output URLs 
+url_gencap = build_url_ml(y_test="gen_cap")
+url_share = build_url_ml(y_test="share")
+url_total = build_url_ml(y_test="gen_total")
+url_avoided = build_url_ml(y_test="avoided")
+
+
+# Global Variables to Use for State Session Updates & Calls
+g_type = st.session_state.graph_type
+y_test = st.session_state.y_test
+dataflow = st.session_state.dataflow
+view_type = st.session_state.view_type
+
+
+        
+
+
+# ---------------- WARNING! ------------------------------ NASTY HTML SECTION HANDLING THE BRIDGE BETWEEN GUI CLICK & ST ENGINE ----------------------------- WARNING! ----------------------------|
+
+
+# This HTML File Handles the Task Bar Menu Labelling Control & Drop-Down Menu handling & Drop-Down Sub
+st.markdown(f"""
+<div class="menu-bar">
+    <div class="menu-item">
+        Edit
+        <div class="dropdown">
+            <div>Undo Action</div>
+            <div>Redo Action</div>
+        </div>
+    </div>
+    <div class="menu-item">
+        View
+        <div class="dropdown">
+            <a href="{url_pred}" target="_self">Predictions</a>
+            <a href="{url_xai}" target="_self">Explainable AI</a>
+        </div>
+    </div>
+    <div class="menu-item">
+        Format
+        <div class="dropdown">
+            <div class="dropdown-item">
+                Visualization
+                <div class="submenu">
+                    <a href="{url_line}" target="_self">Line</a> 
+                    <a href="{url_bar}" target="_self">Bar</a>
+                    <a href="{url_box}" target="_self">Box</a>
+                    <a href="{url_scatter}" target="_self">Scatter</a>
+                </div>
+            </div>
+            <div class="dropdown-item">
+                Outputs
+                <div class="submenu">
+                    <div class="dropdown-item">
+                        Types
+                        <div class="submenu">
+                            <div class="dropdown-item">
+                                Energy
+                                <div class="submenu">
+                                    <a href="{url_gencap}" target="_self">Gen per Cap</a>
+                                    <a href="{url_total}" target="_self">Total Generated</a>
+                                </div>
+                            </div>
+                            <div class="dropdown-item">
+                                Eco & Market
+                                <div class="submenu">
+                                    <a href="{url_share}" target="_self">Solar Market Share</a>
+                                    <a href="{url_avoided}" target="_self">Emissions Avoided</a>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu-item">
+        Tools
+        <div class="dropdown">
+            <div id="calc-trigger" style="cursor:pointer;">Calculator</div>
+            <div id="pad-trigger" style="cursor:pointer;">Write Pad</div>
+        </div>
+    </div>
+    <div class="menu-item">
+        Help
+        <div class="dropdown">
+            <div>Dashboard Help</div>
+            <div>Report a Bug</div>
+            <div>About the Dashboard</div>
+        </div>
+</div>
+    <div id="calculator-popout" style="display: none; position: fixed; top: 15%; left: 50%; transform: translateX(-50%); background: white; border: 3px solid #81c046; z-index: 99999; width: 320px; height: 480px; box-shadow: 0px 4px 15px rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden;">
+        <div style="background: #38c401; color: white; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-weight: bold; font-family: sans-serif;">Calculator</span>
+        <button id="close-calc" style="background: none; border: none; color: white; cursor: pointer; font-size: 20px; font-weight: bold;">&times;</button>
+    </div>
+    <iframe src="data:text/html;base64,{b64_calc}" style="width: 100%; height: 430px; border: none; overflow: hidden;" scrolling="no"></iframe>
+</div>
+<div id="pad-popout" style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%); background: white; border: 3px solid #81c046; z-index: 99999; width: 400px; height: 500px; box-shadow: 0px 4px 15px rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden;">
+    <div style="background: #38c401; color: white; padding: 10px 15px; display: flex; justify-content: space-between;">
+        <span style="font-weight: bold;">Write Pad</span>
+        <button id="close-pad" style="background:none; border:none; color:white; font-size:20px; cursor:pointer;">&times;</button>
+    </div>
+    <iframe src="data:text/html;base64,{b64_pad}" style="width: 100%; height: 440px; border: none;"></iframe>
+</div>
+<div class="taskbar-clock" id="taskbar-clock">00:00:00 PM</div>
+<script>
+    function updateTaskbarClock() {{
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        const hoursStr = String(hours).padStart(2, '0');
+
+        const timeString = hoursStr + ":" + minutes + ":" + seconds + " " + ampm;
+        
+        // Find the clock element in the parent document
+        const clockElement = document.getElementById('taskbar-clock');
+        if (clockElement) {{
+            clockElement.textContent = timeString;
+        }}
+    }}
+
+    // Update every second
+    setInterval(updateTaskbarClock, 1000);
+    updateTaskbarClock();
+</script>
+""", unsafe_allow_html=True)
+
+
+
+# Checking for Import or Export Condition
+
+
+
+
+# ------------- This Section Handles the Y-Variables for Visuals --------
+    
+if y_test == "gen_cap":
+    selected_target = "solar_generation_per_capacity"
+    
+if y_test == "share":
+    selected_target = "solar_market_share"
+    
+if y_test == "gen_total":
+    selected_target = "total_generation__solar"
+    
+if y_test == "avoided":
+    selected_target = "emissions_avoided"
+    
+
+# ------------------------------------------------- ACTUAL PROGRAMMING SECTION WITH DATA AND ENGINE -----------------------------------------------
+
+
+# ----------------------------
+# DATA PIPELINE
+# ----------------------------
+
+@st.cache_data
+def load_clean_data():
+    aeso = load_data_aeso()
+    return clean_fe1(aeso)
+
+
+# Loading in the Cleaned Set
+aeso_clean = load_clean_data()
+
+# This one is required for the XAI Plots for now -- Until I find a better way
+monthly = fe(aeso_clean)
+
+# Processing Cleaned Dataset for Model 3
+df_model, features, selected_target = ProcessDataM3(aeso_clean, selected_target)
+
+y_test_model, test_pred, results, test_df, model, X_train, train_df, metrics = TrainModel3(df_model, features, selected_target, monthly)
+
+
+
+# RENDER LOGIC
+# ----------------------------
+
+
+# Checking for Import or Export Condition  
+
+
+
+if view_type == "prediction":
+    st.header("**Model Predictions**")
+    plot_prediction_view(train_df, test_df, results, selected_target, g_type)
+    st.header(f"**Model:** {type(model).__name__}")
+    
+    results["error"] = results["actual"] - results["pred"]
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.metric("Max Error", f"{results['error'].abs().max():.0f}")
+    
+    with col2:
+        st.metric("Mean Error", f"{results['error'].mean():.2f}")
+    
+    with col3:
+        st.metric("Std Dev", f"{results['error'].std():.2f}")    
+    
+    
+    metrics = metrics[selected_target]
+
+
+
+
+
+elif view_type == "insights":
+    st.title("Explainable AI")
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(['Information', 'Perf. Metrics', 'Feature Importance', 'Residual Analysis', 'SHAP Analysis'])
+    
+    with tab1:
+        st.header("Explainable AI Information") 
+        st.divider()
+        
+        st.subheader("**What is Explainable AI?**")
+        st.write("Explainable AI (XAI) is a set of processes and methods which help human users to observe, comprehend and trust the results created by a Machine Learning Algorithm.")
+        st.write("")
+        
+        st.subheader("How is a Model Explainable?")
+        st.write("One part to a Model's Explainability involves **Performance Metrics** such as:")
+        
+        sub1, sub2, sub3 = st.tabs(['RMSE', 'MAE', 'R²'])
+        
+        with sub1:
+            st.header("RMSE: Root Mean Square Error")
+            st.divider()
+            st.write("The Root Mean Square Error (RMSE) is a standard metric used in Machine Learning to measure the accuracy of a model, particularly a 'Regression Model'.") 
+            st.write("The computed value represents the average difference between what was predicted and what was actual.")
+            st.write("In the context of Explainable AI, the RMSE serves as a crucial quantitative metric to confirm that a 'transparent' Model is performing accurately.")
+            st.write("To interpret a calculated RMSE value; a value that is closer to '0' indicates a better fit. A value of '0' indicates a perfect fit.")
+            st.write("Units with RMSE is expressed in the same units as the target variable")
+            st.subheader("Usage Warning:")
+            st.write("RMSE squares the errors before averaging them, allowing higher influence to be given to large errors.")
+            st.write("This makes it more sensitive to outliers compared to other **Performance Metrics** like Mean Absolute Error (MAE).")
+            
+        with sub2:
+            st.header("MAE: Mean Absolute Error")
+            st.divider()
+            st.write("The Mean Absolute Error (MAE) is an evaluation metric in Machine Learning used to measure the accuracy of 'Regression Models'.")
+            st.write("It calculates the average magnitude of errors in a set of predictions.")
+            st.write("In the context of Explainable AI, the MAE serves as an easy-to-understand metric for quantifying the Model's error. Helping to build trust in the output by providing a clear picture of how far the predictions strayed from the actual.")
+            st.write("MAE allows developers to track the accuracy across time or data splits to identify performance degradation.")
+            st.write("Units with MAE are expressed in the same units as the target variable")
+            st.write("To intrepret a calculated MAE value; the output represents the distance away from the actual. Values closer to '0' represent a better fit. When the value equals '0' it represents a perfect fit.")
+        
+        with sub3:
+            st.header("R²: R-Squared")
+            st.divider()
+            st.write("The R-Squared (R²) is a statistical measure in Machine Learning which indicates how well a model fits the data given.")
+            st.write("In theory, it represents the proportion of variance in the 'target' variable that is predictable from the feature variables.")
+            st.write("In the context of Explainable AI, it is a way of observing if the model actually understands the data that it is being given. In other words, it serves as a factor of reliability.")
+            st.write("Units with R² are expressed in percentage (%)")
+            st.write("A high R² (e.g. - 80%) will indicate that the Model has captured the base logic of the data. Its feature explanations are considered trustworthy.")
+            st.write("A low R² (e.g. - 20%) will indicate that the Model did not capture the base logic and is 'mostly guessing' the output predictions.")
+        
+        st.divider()
+        st.write("Additional methods are also used in tandem with Performance Metrics for a Model's Explainability.")
+        st.write("These additional methods are considered to be 'Diagnostic & Interpretibility Tools' that aid in answering the question of 'How does it work?'")
+        st.write("These **Diagnostic & Interpretibility** methods include:")
+        
+        sub1, sub2, sub3 = st.tabs(['Feature Importance', 'Residual Analysis', 'SHAP Analysis'])
+        
+        with sub1:
+            st.header("Feature Importance")
+            st.divider()
+            st.write("The method of observing a Model's 'Feature Importance' is essentially a technique that will rank the input variables (features) given to the Model based on those features' influence on a Model's prediction.")
+            st.write("This helps to audit the Model's logic and validate decisions against the domain as well as indentifying data leakages. It will tell which variables (features) mattered the most to the Model.")
+            st.write("It is important to note that Feature Importance can tell you which feature is important but it usually will not show how that particular important feature can affect the prediction outcome.")
+            st.write("To interpret Feature Importance; the larger the 'bar' for a feature then the more influence it had upon the Model's prediction. Features with '0' importance are ignored and considered 'noise'.")
+            st.write("It is also important to note that the Feature Importance Relative-Ranking does not indicate a 'direction' it only gives a 'magnitude'.")
+            
+        with sub2:
+            st.header("Residual Analysis")
+            st.divider()
+            st.write("This method of observation is the practice of examining the errors (aka 'Residuals') between predicted values and actual values in order to interpret the Model's performance, identify any biases present, as well as validate assumptions.")
+            st.write("Residual Analysis can help reveal where a Model is failing, helping to ensure it makes correct decisions for the right reasons.")
+            st.write("The use of residuals can help prove that the Model's errors are truly random.")
+            st.write("Units with Residual Analysis are expressed in the same units as the 'target' variable.")
+            st.write("To interpret Residual Analysis; you observe the 'shape of the distribution' on a scatter plot graph.")
+            st.write("If the scattered points appear random then the model can be considered unbiased. If there is a 'funneling' appearance then the model is becoming inaccurate with higher values. If the appearance is a 'U' or 'S' then it is representative of over and under predicting; this may indicate to use more features or a more complex model.")
+        
+        with sub3:
+            st.header("SHAP Analysis")
+            st.divider()
+            st.write("The SHAP (SHapley Additive Explanations) Analysis method is often considered to be one of the crucial methods of Explainable AI.")
+            st.write("This method is a 'Game-Theoretic' approach which explains individual predictions made by the Model by quantifying the contribution of each feature to that particular prediction. This method is able to work on any Machine Learning Model.")
+            st.write("Units with SHapley Analysis vary and depend on the kind of model you are using. Units can be log-odds for Classification Models or 'Original Units' for Regression Models.")
+            st.write("To interpret SHapley Analysis; a SHAP Summary Plot is generated for viewing.")
+            st.write("The center line represents the **Model's Average Starting Point** or 'baseline'. Points to the right of center influenced the prediction further. Points to the left of center dragged the prediction lower.")
+            st.write("Additionally, red points indicate that the feature value was 'high' while blue dots indicate that the feature value was 'low'.")
+            
+    
+    with tab2:
+        st.header("Model's Performance Metrics")
+        st.divider()
+        
+        EvaluateModel3(y_test_model, test_pred, results, test_df, model, features, X_train, selected_target, 2, g_type)
+        
+    with tab3:
+        EvaluateModel3(y_test_model, test_pred, results, test_df, model, features, X_train, selected_target, 3, g_type)
+    
+    with tab4:
+        st.header("Model's Residual Analysis")
+        EvaluateModel3(y_test_model, test_pred, results, test_df, model, features, X_train, selected_target, 4, g_type)
+    
+    with tab5:
+        st.header("Model's SHAP Analysis")
+        EvaluateModel3(y_test_model, test_pred, results, test_df, model, features, X_train, selected_target, 5, g_type)
+        
+      
+# Update the Taskbar Clock
+components.html("""
+<script>
+    function updateClock() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        const timeString = `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+
+        // REACH OUT of the component's iframe into the main page
+        const clock = window.parent.document.getElementById('taskbar-clock');
+        if (clock) {
+            clock.textContent = timeString;
+        }
+    }
+    
+    // Update every second
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
+""", height=0)
+
+execute_js("""
+const doc = window.parent.document;
+const calcBtn = doc.getElementById('calc-trigger');
+const calcPopout = doc.getElementById('calculator-popout');
+const closeBtn = doc.getElementById('close-calc');
+
+// Toggle from the Menu
+if (calcBtn && calcPopout) {
+    calcBtn.onclick = function() {
+        const isHidden = calcPopout.style.display === 'none';
+        calcPopout.style.display = isHidden ? 'block' : 'none';
+    };
+}
+
+// Close from the 'x'
+if (closeBtn && calcPopout) {
+    closeBtn.onclick = function() {
+        // FIXED: Changed 'popout' to 'calcPopout' to match the variable above
+        calcPopout.style.display = 'none';
+    };
+}
+""")
+
+execute_js("""
+const padBtn = doc.getElementById('pad-trigger');
+const padPopout = doc.getElementById('pad-popout');
+const closePad = doc.getElementById('close-pad');
+
+if (padBtn && padPopout) {
+    padBtn.onclick = function() {
+        const isHidden = padPopout.style.display === 'none';
+        padPopout.style.display = isHidden ? 'block' : 'none';
+    };
+}
+
+if (closePad && padPopout) {
+    closePad.onclick = function() {
+        padPopout.style.display = 'none';
+    };
+}
+""")

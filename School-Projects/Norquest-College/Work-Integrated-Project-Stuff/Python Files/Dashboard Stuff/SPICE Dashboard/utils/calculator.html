@@ -1,0 +1,90 @@
+<!-- Calculator Utility for SPICE Dashboard Controlbar -->
+
+<!-- calculator.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Add your CSS styling here */
+        .calculator {
+            width: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+        .display {
+            width: 90%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 1.5em;
+            text-align: right;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .button {
+            width: 60px;
+            height: 60px;
+            font-size: 1.2em;
+            margin: 4px;
+            cursor: pointer;
+            background-color: #eee;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #ddd;
+        }
+        .operator {
+            background-color: #ff9800;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" class="display" id="display" disabled>
+        <div class="buttons">
+            <button class="button" onclick="clearDisplay()">C</button>
+            <button class="button operator" onclick="appendValue('/')">/</button>
+            <button class="button operator" onclick="appendValue('*')">*</button>
+            <button class="button operator" onclick="appendValue('-')">-</button>
+            <button class="button" onclick="appendValue('7')">7</button>
+            <button class="button" onclick="appendValue('8')">8</button>
+            <button class="button" onclick="appendValue('9')">9</button>
+            <button class="button operator" onclick="appendValue('+')">+</button>
+            <button class="button" onclick="appendValue('4')">4</button>
+            <button class="button" onclick="appendValue('5')">5</button>
+            <button class="button" onclick="appendValue('6')">6</button>
+            <button class="button" onclick="calculate()" style="height: 132px; float: right;">=</button>
+            <button class="button" onclick="appendValue('1')">1</button>
+            <button class="button" onclick="appendValue('2')">2</button>
+            <button class="button" onclick="appendValue('3')">3</button>
+            <button class="button" onclick="appendValue('0')">0</button>
+            <button class="button" onclick="appendValue('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        // Add your JavaScript logic here
+        let display = document.getElementById('display');
+
+        function appendValue(value) {
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch (e) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
